@@ -1,0 +1,32 @@
+sudo: required
+language: node_js
+node_js: "8"
+osx_image: xcode9.2
+matrix:
+  include:
+    - os: osx
+      env:
+        - ELECTRON_CACHE=$HOME/.cache/electron ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
+
+    - os: linux
+
+
+cache:
+  directories:
+    - node_modules
+    - $HOME/.cache/electron
+    - $HOME/.cache/electron-builder
+
+before_install:
+  - npm install -g yarn
+
+install:
+  - git reset --hard HEAD
+  - git submodule update --init --recursive
+  - yarn
+
+script:
+  - yarn build
+branches:
+  only:
+    - master
