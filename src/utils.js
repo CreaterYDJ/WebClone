@@ -39,21 +39,21 @@ function to_local_path(remoteUrl) {
 
     let host = remoteURL.host.replace(":", "-"); //文件名不允许包含引号`:`
     let pathname = remoteURL.pathname;
-    if (pathname.endsWith('/')) pathname = pathname + "index.html";
+    if (pathname.endsWith("/")) pathname = pathname + "index.html";
     let protocol = remoteURL.protocol;
 
     let localPath = DATA_DIR;
 
     switch (protocol) {
-        case 'http:':
+        case "http:":
             localPath = path.join(localPath, "http");
             break;
-        case 'https:':
+        case "https:":
             localPath = path.join(localPath, "https");
             break;
         default:
             console.warn("Invalid url:" + remoteUrl);
-            throw new Error("Invalid url:" + remoteUrl)
+            throw new Error("Invalid url:" + remoteUrl);
     }
 
     localPath = path.join(
@@ -62,7 +62,7 @@ function to_local_path(remoteUrl) {
         pathname
     );
 
-    return localPath
+    return localPath;
 }
 
 module.exports = {

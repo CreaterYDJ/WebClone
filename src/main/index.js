@@ -19,9 +19,9 @@ db.defaults({projects: []}).write();
 let ctrlWindow;
 let webViewWindow;
 
-ipcMain.on('goto-url', (event, arg) => {
+ipcMain.on("goto-url", (event, arg) => {
     console.log(arg);  // prints "ping"
-    webViewWindow.loadURL(arg)
+    webViewWindow.loadURL(arg);
     // event.sender.send('asynchronous-reply', 'pong') //reply
 });
 
@@ -62,7 +62,7 @@ function createWindow() {
     webViewWindow.webContents.session.setUserAgent(UserAgent);
     ctrlWindow.webContents.session.setUserAgent(UserAgent);
 
-    console.log("ses.getUserAgent()", webViewWindow.webContents.session.getUserAgent())
+    console.log("ses.getUserAgent()", webViewWindow.webContents.session.getUserAgent());
     // ses.webRequest.onBeforeSendHeaders(filter, (details, callback) => {
     //     details.requestHeaders['User-Agent'] = UserAgent
     //     callback({cancel: false, requestHeaders: details.requestHeaders})
@@ -72,15 +72,15 @@ function createWindow() {
 
         let remoteURL = url.parse(details.url);
         // 过滤非http(s)协议 过滤本地开发服务器
-        if (remoteURL.host === 'localhost:9080'
+        if (remoteURL.host === "localhost:9080"
             || (remoteURL.protocol !== "http:" && remoteURL.protocol !== "https:")) {
 
             console.warn("Ignored invalid URL : " + details.url);
         } else {
             // FIXED: 主线程无法主动发消息给渲染线程
-            ctrlWindow.webContents.send('add-request', details);
+            ctrlWindow.webContents.send("add-request", details);
         }
-        callback({})
+        callback({});
 
     });
 

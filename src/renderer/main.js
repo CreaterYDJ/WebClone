@@ -3,6 +3,8 @@ import Vue from "vue";
 
 import App from "./App";
 import router from "./router";
+
+// eslint-disable-next-line no-undef
 if (!process.env.IS_WEB) Vue.use(require("vue-electron"));
 
 Vue.config.productionTip = false;
@@ -12,7 +14,7 @@ Vue.use(ElementUI);
 import "element-ui/lib/theme-chalk/index.css";
 
 
-import TreeView from "vue-json-tree-view"
+import TreeView from "vue-json-tree-view";
 Vue.use(TreeView);
 
 
@@ -20,5 +22,5 @@ Vue.use(TreeView);
 new Vue({
     components: {App},
     router,
-    template: "<App/>"
+    template: "<App/>",
 }).$mount("#app");
